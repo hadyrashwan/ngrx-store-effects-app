@@ -1,4 +1,3 @@
-import { LoadPizzas, LoadPizzasFail } from './pizzas.actions';
 import { Pizza } from './../../models/pizza.model';
 import { Action } from '@ngrx/store'
 
