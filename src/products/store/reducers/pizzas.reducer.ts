@@ -12,7 +12,40 @@ loading:boolean
 
 
 export const initialState:PizzaState = {
-    data: [],
+    data: [    {
+        "name": "Blazin' Inferno",
+        "toppings": [
+          {
+            "id": 9,
+            "name": "pepper"
+          },
+          {
+            "id": 3,
+            "name": "basil"
+          },
+          {
+            "id": 4,
+            "name": "chili"
+          },
+          {
+            "id": 7,
+            "name": "olive"
+          },
+          {
+            "id": 2,
+            "name": "bacon"
+          },
+          {
+            "id": 1,
+            "name": "anchovy"
+          },
+          {
+            "id": 5,
+            "name": "mozzarella"
+          }
+        ],
+        "id": 1
+      }],
     loaded:false,
     loading:false
 
@@ -31,7 +64,7 @@ export function reducer (
         case fromPizzas.LOAD_PIZZAS_SUCCESS:{
         return {...state ,
             //  data:action.payload 
-             , loading:false,loaded:true}
+             loading:false,loaded:true}
         }
         // break;        
         case fromPizzas.LOAD_PIZZAS_FAIL:{
@@ -45,3 +78,7 @@ export function reducer (
     }
     return state  ;
 }
+
+export const getPizzaLoading = (state:PizzaState):boolean => state.loading
+export const getPizzaLoaded = (state:PizzaState):boolean => state.loaded
+export const getPizzas = (state:PizzaState):Pizza[] => state.data
