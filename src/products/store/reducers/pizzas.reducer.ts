@@ -24,17 +24,24 @@ export function reducer (
     action:fromPizzas.PizzaAction):PizzaState{
 
     switch(action.type){
-        case fromPizzas.LOAD_PIZZAS:
-        state = {...state,loading:true}
-        break;
-        case fromPizzas.LOAD_PIZZAS_SUCCESS:
-        state = {...state , data:action.payload , loading:false,loaded:true}
-        break;        
-        case fromPizzas.LOAD_PIZZAS_FAIL:
-        state = {...state , loading:false , loaded:false}
-        break;
-        default:
-        break;
+        case fromPizzas.LOAD_PIZZAS:{
+        return{...state,loading:true}
+        }
+        // break;
+        case fromPizzas.LOAD_PIZZAS_SUCCESS:{
+        return {...state ,
+            //  data:action.payload 
+             , loading:false,loaded:true}
+        }
+        // break;        
+        case fromPizzas.LOAD_PIZZAS_FAIL:{
+            return {...state , loading:false , loaded:false}
+        }
+        // break;
+        // default:{
+        //     return state
+        // }
+        // // break;
     }
     return state  ;
 }
