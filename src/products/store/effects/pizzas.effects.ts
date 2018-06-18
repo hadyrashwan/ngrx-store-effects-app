@@ -23,11 +23,12 @@ constructor(private actions$ : Actions,
 loadPizzas$ = this.actions$.ofType(pizzaActions.LOAD_PIZZAS)
 .pipe(
     switchMap(()=>{
-        return this.pizzasService.getPizzas()
-        .pipe(
-            map(pizzas => new pizzaActions.LoadPizzasSuccess(pizzas) ),
-            catchError(error => of(new pizzaActions.LoadPizzasFail(error))
-        )
+    return this.pizzasService.getPizzas()
+    .pipe(
+        map(pizzas => new pizzaActions.LoadPizzasSuccess(pizzas) ),
+        catchError(error =>
+             of(new pizzaActions.LoadPizzasFail(error)))
+    )
     })
 )
 }
