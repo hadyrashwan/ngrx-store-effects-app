@@ -5,14 +5,14 @@ import { defaultUrlMatcher } from '@angular/router/src/shared';
 
 
 export interface PizzaState {
-data:Pizza[],
+entities:{[id:number] : Pizza},
 loaded:boolean,
 loading:boolean
 }
 
 
 export const initialState:PizzaState = {
-    data: [],
+    entities:{},
     loaded:false,
     loading:false
 
@@ -29,10 +29,23 @@ export function reducer (
         }
         // break;
         case fromPizzas.LOAD_PIZZAS_SUCCESS:{
+
         
+        const pizzas = action.payload
+        const entities = pizzas.reduce((entities:{[id:number]:Pizza},pizza:Pizza)=>{
+            return {
+                ...entities,
+                [pizza.id]:pizza
+            };
+        },
+            {
+                ...state.entities
+            }
+        )
         return {...state ,
-             data:action.payload ,
-             loading:false,loaded:true}
+             loading:false,loaded:true,
+             entities
+            }
         }
         // break;        
         case fromPizzas.LOAD_PIZZAS_FAIL:{
@@ -49,4 +62,4 @@ export function reducer (
 
 export const getPizzaLoading = (state:PizzaState):boolean => state.loading
 export const getPizzaLoaded = (state:PizzaState):boolean => state.loaded
-export const getPizzas = (state:PizzaState):Pizza[] => state.data
+export const getPizzasEntities = (state:PizzaState):{[id:number] : Pizza} => state.entities
