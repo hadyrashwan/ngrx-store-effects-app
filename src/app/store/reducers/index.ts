@@ -19,8 +19,8 @@ export const reducers:ActionReducerMap<State> = {
 
 
 export const getRouterState = createFeatureSelector<
-fromRouter.RouterReducerState<RouterStateUrl>
->('routerReducer')
+  fromRouter.RouterReducerState<RouterStateUrl>
+>('routerReducer');
 
 export class CustomSerializer 
 implements fromRouter.RouterStateSerializer<RouterStateUrl>{
